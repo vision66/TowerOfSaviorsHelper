@@ -1,0 +1,548 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Web Grab</title>
+    <style>
+        * {
+            font-size: 12px;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #574141;
+            height: 100%;
+        }
+        
+        main {
+            margin: 0 auto;
+            padding: 10px;
+            width: 800px;
+            height: 100%;
+            background: #ffffff;
+            text-align: right;
+        }
+    </style>
+    <script src="FileSaver.js"></script>
+    <script>
+
+        function webgrab(options) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', options.url, false);
+            xhr.overrideMimeType(options.mimeType);
+
+            try {
+                xhr.send();
+            } catch (error) {
+                options.status = error.code;
+                return options;
+            }
+
+            options.status = xhr.status;
+            if (options.status != 200) {
+                return options;
+            }
+
+            var htmlText = xhr.responseText;
+            htmlText = htmlText.replace(/([\r\n\t\|]|amp;|&nbsp;)+/g, '');
+            htmlText = htmlText.replace(/<script[^>]+>/g, '<script>');
+            htmlText = htmlText.replace(/\s(onload|onfocus|onblur|style|alt)="[^"]+"/g, ' $1');
+            htmlText = htmlText.replace(/\s(onload|onfocus|onblur|style|alt)='[^']+'/g, ' $1');
+            htmlText = htmlText.replace(/\s(class|id|target)="([^"]+)"/g, ' $2');
+            htmlText = htmlText.replace(/\s(class|id|target)='([^']+)'/g, ' $2');
+            htmlText = htmlText.replace(/\s{2,}/g, ' ');
+            htmlText = htmlText.replace(/\s+>/g, '>');
+            htmlText = htmlText.replace(/>\s+</g, '><');
+            htmlText = htmlText.replace(/(<br \/>|<br\/>)+/g, '<br>');
+
+            if (options.didLoad) {
+                htmlText = options.didLoad(htmlText);
+            }
+
+            var propertys = Object.getOwnPropertyNames(options);
+
+            for (const property of propertys) {
+
+                if (property == 'url' || property == 'mimeType' || property == 'didLoad') {
+                    continue;
+                }
+
+                var parser = options[property].parser;
+                var handle = options[property].handle;
+
+                if (parser == undefined || handle == undefined) {
+                    continue;
+                }
+
+                var items = [];
+                var regexp = new RegExp(parser, 'g');
+                var search = null;
+                while (search = regexp.exec(htmlText)) {
+                    var item = {};
+                    handle(item, search);
+                    items.push(item);
+                }
+                options[property].results = items;
+            }
+
+            return options;
+        }
+
+        function GrabMonster() {
+
+            // 取得界面上勾选的属性, 准备SQL语句
+            var force = document.getElementsByName('force')[0].checked;
+            var checkboxes = document.getElementsByName('attributes');
+            var attributes = [];
+            for (const checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    attributes.push(`元素属性=${checkbox.value}`);
+                    force == false || attributes.push(`元素属性='${checkbox.nextSibling.nodeValue}'`);
+                }
+            }
+            if (attributes.length == 0) {
+                alert('请选择一个属性');
+                return;
+            }
+
+            var checkboxes = document.getElementsByName('stars');
+            var stars = [];
+            for (const checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    stars.push(`怪兽星级=${checkbox.value}`);
+                }
+            }
+            if (stars.length == 0) {
+                alert('请选择一个星级');
+                return;
+            }
+
+            var checkboxes = document.getElementsByName('races');
+            var races = [];
+            for (const checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    races.push(`怪兽种族=${checkbox.value}`);
+                    races.push(`怪兽种族='${checkbox.nextSibling.nodeValue}'`);
+                }
+            }
+            if (races.length == 0) {
+                alert('请选择一个种族');
+                return;
+            }
+
+            var attributes_str = attributes.join(' OR ');
+            var stars_str = stars.join(' OR ');
+            var races_str = races.join(' OR ');
+            var querySQL = `SELECT * FROM 怪兽数据 WHERE (${attributes_str}) AND (${stars_str}) AND (${races_str})`;
+
+            var fetchMonsterItem = function(result) {
+
+                if (result.rows.length <= result.cursor) {
+                    console.log('游标越界!');
+                    return;
+                }
+
+                var row = result.rows.item(result.cursor);
+
+                // 这些变量用于收集抓取的结果
+                var teams = [];
+                var actives = [];
+                var combines = [];
+                var ameliorations = [];
+                var monster = {
+                    链接地址: row.链接地址,
+                    怪兽头像: row.怪兽头像
+                };
+
+                var response = webgrab({
+                    url: row.链接地址,
+                    mimeType: 'text/html;charset=UTF-8',
+                    didLoad: function(htmlText) {
+                        return htmlText.replace(/src="data:image\/gif;base64,[^"]+"/g, '').replace(/<path[^>]+>/g, '<path removed>').replace(/<script>(.*?)(?=<\/script>)<\/script>/g, '<script removed>').replace(/<noscript>(.*?)(?=<\/noscript>)<\/noscript>/g, '<noscript removed>');
+                    },
+                    image: {
+                        parser: '<center><div style><a href="([^"]+)" image image-thumbnail><img  alt lzy lzyPlcHld data-image-key="[^"]+" data-image-name="[^"]+" data-src="[^"]+" width="[^"]+" height="[^"]+" onload><noscript removed></a><hr />',
+                        handle: function(item, search) {
+                            monster.怪兽立绘 = search[1].replace(/cb=\d+&/, '');
+                        }
+                    },
+                    summary: {
+                        parser: '<th style>[^<]+</th><td colspan="5" style><b>([^<]+)</b></td><th style>[^<]+</th><td colspan="3" style><b>([^<]+)</b></td></tr><tr><th style><div smid_id data-id="[^"]+">[^<]+</div></th><td style>([^<]+)</td><th style>[^<]+</th><td style>([^<]+)★</td><th style>[^<]+</th><td style>([^<]+)</td><th style>[^<]+</th><td style><a href="[^"]+" title="[^"]+">([^<]+)</a></td><th style>[^<]+</th><td style><a[^>]+>([^<]+)</a></td></tr><tr><th style>[^<]+<br>Lv</th><td>([^<]+)</td><th><a href="[^"]+" title="[^"]+"><span style title="[^"]+">[^<]+<br>[^<]+</span></a></th><td colspan="3">([^<]+)</td><th>[^<]+<br>[^<]+</th><td colspan="3">([^<]+)</td></tr>',
+                        handle: function(item, search) {
+                            monster.怪兽名称 = search[1];
+                            monster.元素属性 = search[2];
+                            monster.怪兽标识 = search[3];
+                            monster.怪兽星级 = search[4];
+                            monster.占据空间 = search[5];
+                            monster.怪兽种族 = search[6];
+                            monster.所属系列 = search[7];
+                            monster.最大等级 = search[8];
+                            monster.升级曲线 = search[9];
+                            monster.满级经验 = search[10];
+                        }
+                    },
+                    summary2: {
+                        parser: '<th style>[^<]+</th><td colspan="5" style><b>([^<]+)</b></td><th style>[^<]+</th><td colspan="3" style><b>([^<]+)</b></td></tr><tr><th style><div smid_id data-id="[^"]+">[^<]+</div></th><td style>([^<]+)</td><th style>[^<]+</th><td style>([^<]+)★</td><th style>[^<]+</th><td style>([^<]+)</td><th style>[^<]+</th><td style><a href="[^"]+" title="[^"]+">([^<]+)</a></td><th style>[^<]+</th><td style><strong selflink>([^<]+)</strong></td></tr><tr><th style>[^<]+<br>Lv</th><td>([^<]+)</td><th><a href="[^"]+" title="[^"]+"><span style title="[^"]+">[^<]+<br>[^<]+</span></a></th><td colspan="3">([^<]+)</td><th>[^<]+<br>[^<]+</th><td colspan="3">([^<]+)</td></tr>',
+                        handle: function(item, search) {
+                            monster.怪兽名称 = search[1];
+                            monster.元素属性 = search[2];
+                            monster.怪兽标识 = search[3];
+                            monster.怪兽星级 = search[4];
+                            monster.占据空间 = search[5];
+                            monster.怪兽种族 = search[6];
+                            monster.所属系列 = search[7];
+                            monster.最大等级 = search[8];
+                            monster.升级曲线 = search[9];
+                            monster.满级经验 = search[10];
+                        }
+                    },
+                    summary3: {
+                        parser: '<th style>[^<]+</th><td colspan="5" style><b>([^<]+)</b></td><th style>[^<]+</th><td colspan="3" style><b>([^<]+)</b></td></tr><tr><th style><div smid_id data-id="[^"]+">[^<]+</div></th><td style>([^<]+)</td><th style>[^<]+</th><td style>([^<]+)★</td><th style>[^<]+</th><td style>([^<]+)</td><th style>[^<]+</th><td style><a href="[^"]+" title="[^"]+">([^<]+)</a></td><th style>[^<]+</th><td style>(\\[\\[]])</td></tr><tr><th style>[^<]+<br>Lv</th><td>([^<]+)</td><th><a href="[^"]+" title="[^"]+"><span style title="[^"]+">[^<]+<br>[^<]+</span></a></th><td colspan="3">([^<]+)</td><th>[^<]+<br>[^<]+</th><td colspan="3">([^<]+)</td></tr>',
+                        handle: function(item, search) {
+                            monster.怪兽名称 = search[1];
+                            monster.元素属性 = search[2];
+                            monster.怪兽标识 = search[3];
+                            monster.怪兽星级 = search[4];
+                            monster.占据空间 = search[5];
+                            monster.怪兽种族 = search[6];
+                            monster.所属系列 = search[7];
+                            monster.最大等级 = search[8];
+                            monster.升级曲线 = search[9];
+                            monster.满级经验 = search[10];
+                        }
+                    },
+
+                    grow: {
+                        parser: '<tr><th style>Lv 1</th><td>([^<]+)</td><td>([^<]+)</td><td>([^<]+)</td><td>([^<]+)</td><th>Lv1</th><td colspan="2">([^<]+)</td><td colspan="2">([^<]+)</td></tr><tr><th style>Lv<br>最大</th><td stats_0>(\\d+)(?:<br><span style>[^<]+</span>)?</td><td>(\\d+)(?:<br><span style>[^<]+</span>)?</td><td>(\\d+)(?:<br><span style>[^<]+</span>)?</td><td>(\\d+)(?:<br><span style>[^<]+</span>)?</td><th>每Lv</th><td colspan="2"> \\+(\\d+)</td><td colspan="2"> \\+(\\d+)</td></tr>',
+                        handle: function(item, search) {
+                            monster.初始生命 = search[1];
+                            monster.初始攻击 = search[2];
+                            monster.初始恢复 = search[3];
+                            monster.初始三围 = search[4];
+                            monster.初始经验 = search[5];
+                            monster.初始金币 = search[6];
+                            monster.满级生命 = search[7];
+                            monster.满级攻击 = search[8];
+                            monster.满级恢复 = search[9];
+                            monster.满级三围 = search[10];
+                            monster.每级经验 = search[11];
+                            monster.每级金币 = search[12];
+                        }
+                    },
+                    story: {
+                        parser: '<b>故事</b></span></center><br><div style>(.*?)(?=</div>)</div>',
+                        handle: function(item, search) {
+                            monster.相关故事 = search[1].replace(/<br>/g, '\n').replace(/<[^>]+>/g, '');
+                        }
+                    },
+                    leader: {
+                        parser: '<b>队长技</b></td><th style>名称</th><td colspan="9" style><span ability-tooltip style data-ability[^>]+><a [^>]+>([^>]+)</a></span></td></tr><tr><th style>效果</th><td colspan="9" style>([^>]+)(?:<span></span>)?</td></tr><tr>',
+                        handle: function(item, search) {
+                            monster.队长技能 = search[1];
+                            monster.技能描述 = search[2];
+                        }
+                    },
+                    active_none: {
+                        parser: '<th style>名称</th><td[^>]+><span ability-tooltip style data-ability[^>]+><a[^>]+>([^<]+)</a></span><p><span></span></p></td></tr><tr><th style>效果</th><td[^>]+>(.*?)(?=</td>)</td>',
+                        handle: function (item, search) {
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.技能名称 = search[1];
+                            item.技能类型 = 'cd';
+                            item.最大消耗 = 1;
+                            item.最小消耗 = 1;
+                            item.技能描述 = search[2];
+                            actives.push(item);
+                        }
+                    },
+                    active_cd: {
+                        parser: '<th style>名称</th><td[^>]+><span ability-tooltip style data-ability[^>]+><a[^>]+>([^<]+)</a></span>.*?(?=</td>)</td><th style><span style>[^<]+</span><span hidden sLv_Cal_\\d></span><div[^>]+>初始CD</div></th><td smx_\\d>([^<]+)</td><th><span tt-text title="技能等级达到“最大”时，技能的CD冷却时间" data-texttip="技能等級達到「最大」時，技能的CD冷卻時間">[^<]+<br>最小CD</span></th><td>([^<]+)</td></tr><tr><th style>效果</th><td[^>]+>(.*?)(?=</td>)</td>',
+                        handle: function(item, search) {
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.技能名称 = search[1];
+                            item.技能类型 = 'cd';
+                            item.最大消耗 = search[2];
+                            item.最小消耗 = search[3];
+                            item.技能描述 = search[4];
+                            actives.push(item);
+                        }
+                    },
+                    active_ep: {
+                        parser: '<th style>名称</th><td[^>]+><span ability-tooltip style [^>]+><a [^>]+>([^<]+)</a></span></td><th style>初始EP</th><td>([^<]+)</td><th><span tt-text title="技能等级愈高，发动技能时所需的能量值愈低" data-texttip="技能等級愈高，發動技能時所需的能量值愈低">最小EP</span></th><td>([^<]+)</td></tr><tr><th style>效果</th><td colspan="9" style>(.*?)(?=</td>)</td></tr><tr>',
+                        handle: function(item, search) {
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.技能名称 = search[1];
+                            item.技能类型 = 'ep';
+                            item.最大消耗 = search[2];
+                            item.最小消耗 = search[3];
+                            item.技能描述 = search[4];
+                            actives.push(item);
+                        }
+                    },
+                    teams: {
+                        parser: '队伍技能：<br>(.*?)(?=<br>发动条件：)<br>发动条件：<br>(.*?)(?:<br>|</div>)',
+                        handle: function(item, search) {
+                            item.技能描述 = search[1].replace(/<br>/g, '\n');
+                            item.限制条件 = search[2];
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.相关怪兽 = monster.怪兽名称;
+                            teams.push(item);
+                        }
+                    },
+                    combines: {
+                        parser: '<br>组合技能：([^<]+)?<br>([^<]+)<br>发动条件：<br>([^<]+)<br>',
+                        handle: function(item, search) {
+                            item.技能名称 = search[1];
+                            item.技能描述 = search[2];
+                            item.限制条件 = search[3];
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.相关怪兽 = monster.怪兽名称;
+                            combines.push(item);
+                        }
+                    },
+                    ameliorations: {
+                        parser: '<img  alt lzy lzyPlcHld data-image-key="Refine(\\d).png" [^>]+><noscript removed></td><td style>(.*?)(?=</td>)</td></tr></table></td><td>([^<]+)(<span></span>)?</td>',
+                        handle: function(item, search) {
+                            item.排列序号 = search[1];
+                            item.消耗灵魂 = search[3];
+                            item.技能描述 = search[2].replace(/<br>/g, '\n').replace(/<span [^>]+><a [^>]+><span style>([^<]+)<\/span><\/a><\/span>/g, '$1');
+                            item.怪兽标识 = monster.怪兽标识;
+                            item.相关怪兽 = monster.怪兽名称;
+                            ameliorations.push(item);
+                        }
+                    }
+                });
+
+                var 链接地址 = decodeURI(row.链接地址);
+
+                if (response.status != 200) {
+                    return new Promise(function(resolve, reject) {
+                        console.log(`${链接地址} => 下载失败`);
+                        result.cursor += 1;
+                        resolve(result);
+                    });
+                }
+
+                return new Promise(function(resolve, reject) {
+                    tosdb.transaction(function(context) {
+
+                        for (const team of teams) {
+                            context.executeSql('REPLACE INTO 团队技能 (怪兽标识, 技能描述, 限制条件) VALUES (?, ?, ?)', [team.怪兽标识, team.技能描述, team.限制条件], function(context, message) {
+
+                            }, function(context, message) {
+                                console.log(message);
+                            });
+                        }
+
+                        for (const active of actives) {
+                            context.executeSql('REPLACE INTO 主动技能 (怪兽标识, 技能名称, 技能类型, 最大消耗, 最小消耗, 技能描述) VALUES (?, ?, ?, ?, ?, ?)', [active.怪兽标识, active.技能名称, active.技能类型, active.最大消耗, active.最小消耗, active.技能描述], function(context, message) {
+
+                            }, function(context, message) {
+                                console.log(message);
+                            });
+                        }
+
+                        for (const combine of combines) {
+                            context.executeSql('REPLACE INTO 组合技能 (怪兽标识, 技能名称, 技能描述, 限制条件) VALUES (?, ?, ?, ?)', [combine.怪兽标识, combine.技能名称, combine.技能描述, combine.限制条件], function(context, message) {
+
+                            }, function(context, message) {
+                                console.log(message);
+                            });
+                        }
+
+                        for (const amelioration of ameliorations) {
+                            context.executeSql('REPLACE INTO 升华技能 (怪兽标识, 排列序号, 消耗灵魂, 技能描述) VALUES (?, ?, ?, ?)', [amelioration.怪兽标识, amelioration.排列序号, amelioration.消耗灵魂, amelioration.技能描述], function(context, message) {
+
+                            }, function(context, message) {
+                                console.log(message);
+                            });
+                        }
+
+                        context.executeSql('REPLACE INTO 怪兽数据 (链接地址, 怪兽立绘, 怪兽头像, 怪兽名称, 元素属性, 怪兽标识, 怪兽星级, 占据空间, 怪兽种族, 所属系列, 最大等级, 升级曲线, 满级经验, 初始生命, 初始攻击, 初始恢复, 初始三围, 初始经验, 初始金币, 满级生命, 满级攻击, 满级恢复, 满级三围, 每级经验, 每级金币, 队长技能, 技能描述, 相关故事) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [monster.链接地址, monster.怪兽立绘, monster.怪兽头像, monster.怪兽名称, monster.元素属性, monster.怪兽标识, monster.怪兽星级, monster.占据空间, monster.怪兽种族, monster.所属系列, monster.最大等级, monster.升级曲线, monster.满级经验, monster.初始生命, monster.初始攻击, monster.初始恢复, monster.初始三围, monster.初始经验, monster.初始金币, monster.满级生命, monster.满级攻击, monster.满级恢复, monster.满级三围, monster.每级经验, monster.每级金币, monster.队长技能, monster.技能描述, monster.相关故事], function(context, message) {
+                            console.log(`${链接地址} => 添加成功`);
+                            result.cursor += 1;
+                            resolve(result);
+                        }, function(context, message) {
+                            console.log(`${链接地址} => 添加失败`);
+                            console.log(message);
+                        });
+                    });
+                });
+            };
+
+            // 获取到目标列表后, 开始挨个抓取
+            var fetchMonsterResult = function(result) {
+
+                if (result.rows.length == 0) {
+                    result.cursor = null;
+                } else {
+                    result.cursor = 0;
+                }
+
+                var promise = new Promise(function(resolve, reject) {
+                    resolve(result);
+                });
+
+                for (let index = 0; index < result.rows.length; index++) {
+                    promise = promise.then(fetchMonsterItem);
+                }
+
+                promise.then(function(data) {
+                    console.log(`抓取完成, 一共 ${result.rows.length} 条记录`);
+                });
+            };
+
+            // 获取目标列表
+            var fetchMonsterList = function() {
+                return new Promise(function(resolve, reject) {
+                    tosdb.transaction(function(context) {
+                        context.executeSql(querySQL, [], function(context, result) {
+                            resolve(result);
+                        }, function(context, message) {
+                            reject(message);
+                        });
+                    });
+                });
+            }
+
+            // 执行Promise任务串
+            fetchMonsterList().then(fetchMonsterResult).catch(function(error) {
+                console.log(error);
+            });
+        }
+
+        function GrabIndex() {
+
+            var response = webgrab({
+                url: 'http://zh.tos.wikia.com/wiki/召唤兽搜寻器',
+                mimeType: 'text/html;charset=UTF-8',
+                monsters: {
+                    parser: '<div data-attack="([^"]+)" data-attribute="([^"]+)" data-hp="([^"]+)" data-monsterid="([^"]+)" data-racialtype="([^"]+)" data-recover="([^"]+)" data-seriesid="([^"]+)" data-size="([^"]+)" data-star="([^"]+)"><div style><a href="([^"]+)" image image-thumbnail link-internal title="([^"]+)"><img[^>]+src="([^"]+)"',
+                    handle: function(item, search) {
+                        item.元素属性 = search[2];
+                        item.怪兽种族 = search[5];
+                        item.所属系列 = search[7];
+                        item.怪兽星级 = search[9];
+                        item.链接地址 = search[10];
+                        item.怪兽名称 = search[11];
+                        item.怪兽头像 = search[12].replace(/\/scale-to-width-down\/\d+?cb=\d+&/, '/scale-to-width-down/100?');
+                    }
+                }
+            });
+
+            tosdb.transaction(function(context) {
+                for (const monster of response.monsters.results) {
+                    context.executeSql('INSERT INTO 怪兽数据(元素属性, 怪兽种族, 所属系列, 怪兽星级, 怪兽名称, 链接地址, 怪兽头像) VALUES (?, ?, ?, ?, ?, ?, ?)', [monster.元素属性, monster.怪兽种族, monster.所属系列, monster.怪兽星级, monster.怪兽名称, monster.链接地址, monster.怪兽头像], function(context, result) {
+                        console.log(result);
+                    }, function(context, error) {
+                        console.log(error.message);
+                    });
+                }
+            });
+        }
+
+        function ExportDat() {
+            
+            var radios = document.getElementsByName('export');
+            var value = '';
+            for (const radio of radios) {
+                if (radio.checked) {
+                    value = radio.nextSibling.nodeValue;
+                }
+            }
+
+            tosdb.transaction(function (context) {
+
+                var handler = function (result, filename) {
+                    var rows = [];
+                    for (let index = 0; index < result.rows.length; index++) {
+                        var row = result.rows.item(index);
+                        rows.push(row);
+                    }
+                    var file = new File([JSON.stringify(rows)], `${filename}.json`, { type: "text/plain;charset=utf-8" });
+                    saveAs(file); 
+                };
+
+                context.executeSql(`SELECT * FROM ${value}`, [], function (context, result) {
+                    handler(result, value);
+                }, function (context, error) {
+                    console.log(error.message);
+                });
+            });
+        }
+
+        window.onload = function() {
+
+            var tosdb = openDatabase("tosdb", "1.0", "tower of savors database!", 10 * 1024 * 1024);
+            if (!tosdb) {
+                return console.log("您的浏览器不支持 Web SQL Database");
+            }
+            window.tosdb = tosdb;
+
+            tosdb.transaction(function(context) {
+                context.executeSql('CREATE TABLE IF NOT EXISTS 团队技能 (怪兽标识 INTEGER, 技能描述 TEXT, 限制条件 TEXT, PRIMARY KEY(怪兽标识, 技能描述, 限制条件))', []);
+                context.executeSql('CREATE TABLE IF NOT EXISTS 组合技能 (怪兽标识 INTEGER, 技能名称 TEXT, 技能描述 TEXT, 限制条件 TEXT, PRIMARY KEY(怪兽标识, 技能名称, 技能描述, 限制条件))');
+                context.executeSql('CREATE TABLE IF NOT EXISTS 升华技能 (怪兽标识 INTEGER, 排列序号 INTEGER, 消耗灵魂 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 排列序号, 消耗灵魂, 技能描述))', []);
+                context.executeSql('CREATE TABLE IF NOT EXISTS 主动技能 (怪兽标识 INTEGER, 技能名称 TEXT, 技能类型 TEXT, 最大消耗 INTEGER, 最小消耗 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 技能名称, 技能类型, 技能描述))', []);
+                context.executeSql('CREATE TABLE IF NOT EXISTS 怪兽数据 (怪兽标识 INTEGER, 怪兽名称 TEXT, 链接地址 TEXT, 怪兽立绘 TEXT, 怪兽头像 TEXT, 元素属性 TEXT, 怪兽星级 INTEGER, 占据空间 INTEGER, 怪兽种族 TEXT, 所属系列 TEXT, 最大等级 INTEGER, 升级曲线 INTEGER, 满级经验 INTEGER, 初始生命 INTEGER, 初始攻击 INTEGER, 初始恢复 INTEGER, 初始三围 INTEGER, 初始经验 INTEGER, 初始金币 INTEGER, 满级生命 INTEGER, 满级攻击 INTEGER, 满级恢复 INTEGER, 满级三围 INTEGER, 每级经验 INTEGER, 每级金币 INTEGER, 队长技能 TEXT, 技能描述 TEXT, 相关故事 TEXT, PRIMARY KEY(链接地址))');
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div>
+            <label><input type="checkbox" name="attributes" value="1" checked />水</label>
+            <label><input type="checkbox" name="attributes" value="2" checked />火</label>
+            <label><input type="checkbox" name="attributes" value="3" checked />木</label>
+            <label><input type="checkbox" name="attributes" value="4" checked />光</label>
+            <label><input type="checkbox" name="attributes" value="5" checked />暗</label>
+            <input type="button" value="元素属性" />
+        </div>
+        <div>
+            <label><input type="checkbox" name="stars" value="1" checked />1</label>
+            <label><input type="checkbox" name="stars" value="2" checked />2</label>
+            <label><input type="checkbox" name="stars" value="3" checked />3</label>
+            <label><input type="checkbox" name="stars" value="4" checked />4</label>
+            <label><input type="checkbox" name="stars" value="5" checked />5</label>
+            <label><input type="checkbox" name="stars" value="6" checked />6</label>
+            <label><input type="checkbox" name="stars" value="7" checked />7</label>
+            <label><input type="checkbox" name="stars" value="8" checked />8</label>
+            <input type="button" value="怪兽星级" />
+        </div>
+        <div>
+            <label><input type="checkbox" name="races" value="5"  checked />神族</label>
+            <label><input type="checkbox" name="races" value="8"  checked />魔族</label>
+            <label><input type="checkbox" name="races" value="1"  checked />人类</label>
+            <label><input type="checkbox" name="races" value="2"  checked />兽类</label>
+            <label><input type="checkbox" name="races" value="4"  checked />龙类</label>
+            <label><input type="checkbox" name="races" value="3"  checked />妖精类</label>
+            <label><input type="checkbox" name="races" value="10" checked />机械族</label>
+            <label><input type="checkbox" name="races" value="7"  checked />强化素材</label>
+            <label><input type="checkbox" name="races" value="6"  checked />进化素材</label>
+            <input type="button" value="怪兽种族" />
+        </div>
+        <div>
+            <label><input type="checkbox" name="force" />强制更新</label>
+            <input type="button" value="抓取所选怪兽" onclick="GrabMonster()" />
+            <input type="button" value="抓取怪兽索引" onclick="GrabIndex()" />            
+        </div>
+        <hr/>
+        <div>
+            <label><input type="radio" name="export" checked />团队技能</label>
+            <label><input type="radio" name="export"         />组合技能</label>
+            <label><input type="radio" name="export"         />升华技能</label>
+            <label><input type="radio" name="export"         />主动技能</label>
+            <label><input type="radio" name="export"         />怪兽数据</label>
+            <input type="button" value="导出数据" onclick="ExportDat()" />
+        </div>
+    </main>
+</body>
+
+</html>
