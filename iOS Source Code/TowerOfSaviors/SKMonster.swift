@@ -143,7 +143,7 @@ class SKMonster: SKScene {
             
         }, completed: { (image: UIImage?, data: Data?, error: Error?, cacheType: SDImageCacheType, finished: Bool, imageURL: URL?) in
             
-            KSLog("download launch image: image = %@, error = %@, cacheType = %d, finished = %@, imageURL = %@", NSStringFromCGSize(image?.size ?? CGSize.zero), (error?.localizedDescription ?? "nil"), (cacheType.rawValue), finished.description, (imageURL?.absoluteString ?? "unknown"))
+            KSLog("download launch image: image = %@, error = %@, cacheType = %d, finished = %@, imageURL = %@", NSCoder.string(for: image?.size ?? CGSize.zero), (error?.localizedDescription ?? "nil"), (cacheType.rawValue), finished.description, (imageURL?.absoluteString ?? "unknown"))
             
             if error != nil {
                 loading.text = "下载出错!"

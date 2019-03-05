@@ -47,7 +47,7 @@ class SKStageList: SKScene, SceneClickableType, SKGridViewDelegate {
         collection.itemSize = CGSizeMake(scene_width, 56)
         collection.minimumLineSpacing = 0
         collection.minimumInteritemSpacing = 0
-        collection.contentInset = UIEdgeInsetsMake(0, 0, 40, 0)
+        collection.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 40, right: 0)
         collection.delegate = self
         collection.register(SKStageListCell.self, forCellReuseIdentifier: SKStageListCell.defaultIdentifier)
         insertChild(collection, at: 1)

@@ -186,9 +186,12 @@ class SKEditStone: SKScene, SceneClickableType, UIImagePickerControllerDelegate,
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
         
         let ih = image.size.height * image.scale
         let iw = image.size.width * image.scale
@@ -211,4 +214,14 @@ class SKEditStone: SKScene, SceneClickableType, UIImagePickerControllerDelegate,
         let matrixData = stones.map { ["元素属性" : $0.元素属性.rawValue, "元素状态" : $0.元素状态.rawValue, "符石状态" : $0.符石状态.rawValue] }
         UserDefaults.standard.set(matrixData, forKey: "stones matrix")
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

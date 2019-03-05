@@ -39,7 +39,7 @@ class SKPackage: SKScene, SceneClickableType, SKGridViewDelegate {
         collection.itemSize = package_cell_size
         collection.minimumLineSpacing = 12
         collection.minimumInteritemSpacing = 10
-        collection.contentInset = UIEdgeInsetsMake(40, 0, 40, 0)
+        collection.contentInset = UIEdgeInsets.init(top: 40, left: 0, bottom: 40, right: 0)
         collection.delegate = self
         collection.register(SKPackageMonsterCell.self, forCellReuseIdentifier: SKPackageMonsterCell.defaultIdentifier)
         collection.register(SKPackageRemoveCell.self, forCellReuseIdentifier: SKPackageRemoveCell.defaultIdentifier)

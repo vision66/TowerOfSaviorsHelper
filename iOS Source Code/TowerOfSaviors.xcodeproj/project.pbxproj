@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0104CC522022A34D008E9CA7 /* stone.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0104CC512022A34D008E9CA7 /* stone.atlas */; };
-		0107EC16214BA43500AF8F7F /* SKBackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107EC15214BA43500AF8F7F /* SKBackgroundMusicPlayer.swift */; };
-		0107EC18214BA4C600AF8F7F /* SKSoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107EC17214BA4C600AF8F7F /* SKSoundEffect.swift */; };
 		0109BB1321538F95001E8283 /* background music in Resources */ = {isa = PBXBuildFile; fileRef = 0109BB1221538F95001E8283 /* background music */; };
 		0109BB1521538FA2001E8283 /* sound effect in Resources */ = {isa = PBXBuildFile; fileRef = 0109BB1421538FA2001E8283 /* sound effect */; };
 		0109BB1721539832001E8283 /* SLRacialType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109BB1621539832001E8283 /* SLRacialType.swift */; };
@@ -29,19 +27,42 @@
 		015DD5CD2023F2EA0064A37C /* SLTeamSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015DD5CC2023F2EA0064A37C /* SLTeamSkill.swift */; };
 		016E54991FBA967600BD18D3 /* boom.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 016E54981FBA967600BD18D3 /* boom.atlas */; };
 		016F0ABC2176D99300151668 /* SKPackageRemoveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F0ABB2176D99300151668 /* SKPackageRemoveCell.swift */; };
+		017274402223C0970028AF84 /* KosmosCoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172740B2223C0960028AF84 /* KosmosCoreGraphics.swift */; };
+		017274472223C0970028AF84 /* KosmosJavaScriptCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172741B2223C0960028AF84 /* KosmosJavaScriptCore.swift */; };
+		017274482223C0970028AF84 /* Kosmos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0172741C2223C0960028AF84 /* Kosmos.bundle */; };
+		017274492223C0970028AF84 /* KosmosUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172741D2223C0960028AF84 /* KosmosUIKit.swift */; };
+		0172744A2223C0970028AF84 /* KosmosCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172741E2223C0960028AF84 /* KosmosCoreLocation.swift */; };
+		0172744B2223C0970028AF84 /* KosmosSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172741F2223C0960028AF84 /* KosmosSpriteKit.swift */; };
+		0172744C2223C0970028AF84 /* KosmosFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274202223C0960028AF84 /* KosmosFoundation.swift */; };
+		0172744D2223C0970028AF84 /* SKSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274232223C0960028AF84 /* SKSlider.swift */; };
+		0172744E2223C0970028AF84 /* SKGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274242223C0960028AF84 /* SKGridView.swift */; };
+		0172744F2223C0970028AF84 /* SKBackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274252223C0960028AF84 /* SKBackgroundMusicPlayer.swift */; };
+		017274502223C0970028AF84 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274262223C0960028AF84 /* SKButton.swift */; };
+		017274512223C0970028AF84 /* SKSoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274272223C0960028AF84 /* SKSoundEffect.swift */; };
+		017274522223C0970028AF84 /* SKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274282223C0960028AF84 /* SKNumber.swift */; };
+		017274532223C0970028AF84 /* SKControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274292223C0960028AF84 /* SKControl.swift */; };
+		017274542223C0970028AF84 /* Data+CommonCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742A2223C0960028AF84 /* Data+CommonCrypto.swift */; };
+		017274552223C0970028AF84 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742B2223C0960028AF84 /* SwiftyJSON.swift */; };
+		017274562223C0970028AF84 /* UIVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742C2223C0960028AF84 /* UIVerificationController.swift */; };
+		017274572223C0970028AF84 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742D2223C0960028AF84 /* SQLite.swift */; };
+		017274582223C0970028AF84 /* QRCodeMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742E2223C0960028AF84 /* QRCodeMask.swift */; };
+		017274592223C0970028AF84 /* DateComponents+Lunar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172742F2223C0960028AF84 /* DateComponents+Lunar.swift */; };
+		0172745A2223C0970028AF84 /* IIContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274302223C0960028AF84 /* IIContact.swift */; };
+		0172745B2223C0970028AF84 /* UIImageShowerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274312223C0960028AF84 /* UIImageShowerController.swift */; };
+		0172745C2223C0970028AF84 /* UIView+UIAutoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 017274352223C0960028AF84 /* UIView+UIAutoTest.m */; };
+		0172745D2223C0970028AF84 /* UIResponder+UIAutoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 017274362223C0960028AF84 /* UIResponder+UIAutoTest.m */; };
+		0172745E2223C0970028AF84 /* UIProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274372223C0960028AF84 /* UIProgressCircle.swift */; };
+		0172745F2223C0970028AF84 /* IIImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274382223C0960028AF84 /* IIImagePickerController.swift */; };
+		017274602223C0970028AF84 /* NSLayoutConstraintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017274392223C0960028AF84 /* NSLayoutConstraintHelper.swift */; };
+		017274612223C0970028AF84 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743A2223C0960028AF84 /* KeyChain.swift */; };
+		017274622223C0970028AF84 /* UICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743B2223C0960028AF84 /* UICalendar.swift */; };
+		017274632223C0970028AF84 /* DateComponents+Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743C2223C0960028AF84 /* DateComponents+Solar.swift */; };
+		017274642223C0970028AF84 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743D2223C0960028AF84 /* QRCode.swift */; };
+		017274652223C0970028AF84 /* UILaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743E2223C0970028AF84 /* UILaunchController.swift */; };
+		017274662223C0970028AF84 /* UIFlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172743F2223C0970028AF84 /* UIFlowLayoutView.swift */; };
 		0173CE20219BCCA50096512E /* SKEnemyNode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0173CE1F219BCCA50096512E /* SKEnemyNode.sks */; };
-		0174318E2174348B002D03CA /* SKGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174318D2174348B002D03CA /* SKGridView.swift */; };
 		0174319021745AB8002D03CA /* SKPackageMonsterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174318F21745AB7002D03CA /* SKPackageMonsterCell.swift */; };
 		01853615218C196000E1AC4E /* SLSkillEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01853614218C196000E1AC4E /* SLSkillEffect.swift */; };
-		0187304E214F3C16000F7838 /* KosmosCoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187300E214F3C16000F7838 /* KosmosCoreGraphics.swift */; };
-		0187304F214F3C16000F7838 /* KosmosJavaScriptCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187300F214F3C16000F7838 /* KosmosJavaScriptCore.swift */; };
-		01873051214F3C16000F7838 /* KosmosUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873012214F3C16000F7838 /* KosmosUIKit.swift */; };
-		01873052214F3C16000F7838 /* KosmosCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873013214F3C16000F7838 /* KosmosCoreLocation.swift */; };
-		01873053214F3C16000F7838 /* KosmosSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873014214F3C16000F7838 /* KosmosSpriteKit.swift */; };
-		01873054214F3C16000F7838 /* KosmosFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873015214F3C16000F7838 /* KosmosFoundation.swift */; };
-		01873057214F3C16000F7838 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187301C214F3C16000F7838 /* SwiftyJSON.swift */; };
-		0187305B214F3C16000F7838 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873022214F3C16000F7838 /* SQLite.swift */; };
-		0187306C214F3C16000F7838 /* NSLayoutConstraintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01873040214F3C16000F7838 /* NSLayoutConstraintHelper.swift */; };
 		018EF0012015C3F100CB6F35 /* SLGloabls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EF0002015C3F100CB6F35 /* SLGloabls.swift */; };
 		018EF0042015C64200CB6F35 /* SKLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018EF0022015C64200CB6F35 /* SKLaunch.swift */; };
 		018EF0052015C64200CB6F35 /* SKLaunch.sks in Resources */ = {isa = PBXBuildFile; fileRef = 018EF0032015C64200CB6F35 /* SKLaunch.sks */; };
@@ -54,9 +75,6 @@
 		019398F22020146200BA4A8D /* SLElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019398F12020146200BA4A8D /* SLElementType.swift */; };
 		019861822181582700724C68 /* SKParameters.sks in Resources */ = {isa = PBXBuildFile; fileRef = 019861812181582700724C68 /* SKParameters.sks */; };
 		019861842181583900724C68 /* SKParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019861832181583900724C68 /* SKParameters.swift */; };
-		019861872181708B00724C68 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019861862181708B00724C68 /* SKButton.swift */; };
-		019861892181869300724C68 /* SKSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019861882181869300724C68 /* SKSlider.swift */; };
-		0198618B21818C3B00724C68 /* SKControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198618A21818C3A00724C68 /* SKControl.swift */; };
 		019A299320CF58E300B87F9C /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A295820CF58E300B87F9C /* UIImage+WebP.m */; };
 		019A299420CF58E300B87F9C /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A295920CF58E300B87F9C /* MKAnnotationView+WebCache.m */; };
 		019A299520CF58E300B87F9C /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A296020CF58E300B87F9C /* SDWebImageManager.m */; };
@@ -88,7 +106,6 @@
 		019A29AF20CF58E300B87F9C /* SDWebImageWebPCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A299120CF58E300B87F9C /* SDWebImageWebPCoder.m */; };
 		019A29B220CF5B9100B87F9C /* SKSpriteNode+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A29B120CF5B9100B87F9C /* SKSpriteNode+WebCache.m */; };
 		01A7CBE921916F620001F1F5 /* number.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 01A7CBE821916F610001F1F5 /* number.atlas */; };
-		01A7CC1321918B040001F1F5 /* SKNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7CC1221918B040001F1F5 /* SKNumber.swift */; };
 		01AC9F59217083BB00A0B1E2 /* SKBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AC9F58217083BB00A0B1E2 /* SKBottomBar.swift */; };
 		01AC9F5B217084E700A0B1E2 /* SKNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AC9F5A217084E700A0B1E2 /* SKNavigationTitle.swift */; };
 		01B628961FB3F74900E1AF28 /* combo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 01B628931FB3F74900E1AF28 /* combo.atlas */; };
@@ -125,8 +142,6 @@
 
 /* Begin PBXFileReference section */
 		0104CC512022A34D008E9CA7 /* stone.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = stone.atlas; sourceTree = "<group>"; };
-		0107EC15214BA43500AF8F7F /* SKBackgroundMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBackgroundMusicPlayer.swift; sourceTree = "<group>"; };
-		0107EC17214BA4C600AF8F7F /* SKSoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSoundEffect.swift; sourceTree = "<group>"; };
 		0109BB1221538F95001E8283 /* background music */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "background music"; sourceTree = "<group>"; };
 		0109BB1421538FA2001E8283 /* sound effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "sound effect"; sourceTree = "<group>"; };
 		0109BB1621539832001E8283 /* SLRacialType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLRacialType.swift; sourceTree = "<group>"; };
@@ -146,19 +161,44 @@
 		015DD5CC2023F2EA0064A37C /* SLTeamSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTeamSkill.swift; sourceTree = "<group>"; };
 		016E54981FBA967600BD18D3 /* boom.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = boom.atlas; sourceTree = "<group>"; };
 		016F0ABB2176D99300151668 /* SKPackageRemoveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPackageRemoveCell.swift; sourceTree = "<group>"; };
+		0172740B2223C0960028AF84 /* KosmosCoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosCoreGraphics.swift; sourceTree = "<group>"; };
+		0172741B2223C0960028AF84 /* KosmosJavaScriptCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosJavaScriptCore.swift; sourceTree = "<group>"; };
+		0172741C2223C0960028AF84 /* Kosmos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kosmos.bundle; sourceTree = "<group>"; };
+		0172741D2223C0960028AF84 /* KosmosUIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosUIKit.swift; sourceTree = "<group>"; };
+		0172741E2223C0960028AF84 /* KosmosCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosCoreLocation.swift; sourceTree = "<group>"; };
+		0172741F2223C0960028AF84 /* KosmosSpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosSpriteKit.swift; sourceTree = "<group>"; };
+		017274202223C0960028AF84 /* KosmosFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosFoundation.swift; sourceTree = "<group>"; };
+		017274232223C0960028AF84 /* SKSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSlider.swift; sourceTree = "<group>"; };
+		017274242223C0960028AF84 /* SKGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGridView.swift; sourceTree = "<group>"; };
+		017274252223C0960028AF84 /* SKBackgroundMusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBackgroundMusicPlayer.swift; sourceTree = "<group>"; };
+		017274262223C0960028AF84 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		017274272223C0960028AF84 /* SKSoundEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSoundEffect.swift; sourceTree = "<group>"; };
+		017274282223C0960028AF84 /* SKNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNumber.swift; sourceTree = "<group>"; };
+		017274292223C0960028AF84 /* SKControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKControl.swift; sourceTree = "<group>"; };
+		0172742A2223C0960028AF84 /* Data+CommonCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+CommonCrypto.swift"; sourceTree = "<group>"; };
+		0172742B2223C0960028AF84 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		0172742C2223C0960028AF84 /* UIVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerificationController.swift; sourceTree = "<group>"; };
+		0172742D2223C0960028AF84 /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
+		0172742E2223C0960028AF84 /* QRCodeMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeMask.swift; sourceTree = "<group>"; };
+		0172742F2223C0960028AF84 /* DateComponents+Lunar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponents+Lunar.swift"; sourceTree = "<group>"; };
+		017274302223C0960028AF84 /* IIContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IIContact.swift; sourceTree = "<group>"; };
+		017274312223C0960028AF84 /* UIImageShowerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageShowerController.swift; sourceTree = "<group>"; };
+		017274332223C0960028AF84 /* UIView+UIAutoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIAutoTest.h"; sourceTree = "<group>"; };
+		017274342223C0960028AF84 /* UIResponder+UIAutoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+UIAutoTest.h"; sourceTree = "<group>"; };
+		017274352223C0960028AF84 /* UIView+UIAutoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIAutoTest.m"; sourceTree = "<group>"; };
+		017274362223C0960028AF84 /* UIResponder+UIAutoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+UIAutoTest.m"; sourceTree = "<group>"; };
+		017274372223C0960028AF84 /* UIProgressCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProgressCircle.swift; sourceTree = "<group>"; };
+		017274382223C0960028AF84 /* IIImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IIImagePickerController.swift; sourceTree = "<group>"; };
+		017274392223C0960028AF84 /* NSLayoutConstraintHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHelper.swift; sourceTree = "<group>"; };
+		0172743A2223C0960028AF84 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		0172743B2223C0960028AF84 /* UICalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICalendar.swift; sourceTree = "<group>"; };
+		0172743C2223C0960028AF84 /* DateComponents+Solar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponents+Solar.swift"; sourceTree = "<group>"; };
+		0172743D2223C0960028AF84 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		0172743E2223C0970028AF84 /* UILaunchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILaunchController.swift; sourceTree = "<group>"; };
+		0172743F2223C0970028AF84 /* UIFlowLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFlowLayoutView.swift; sourceTree = "<group>"; };
 		0173CE1F219BCCA50096512E /* SKEnemyNode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SKEnemyNode.sks; sourceTree = "<group>"; };
-		0174318D2174348B002D03CA /* SKGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKGridView.swift; sourceTree = "<group>"; };
 		0174318F21745AB7002D03CA /* SKPackageMonsterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPackageMonsterCell.swift; sourceTree = "<group>"; };
 		01853614218C196000E1AC4E /* SLSkillEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSkillEffect.swift; sourceTree = "<group>"; };
-		0187300E214F3C16000F7838 /* KosmosCoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosCoreGraphics.swift; sourceTree = "<group>"; };
-		0187300F214F3C16000F7838 /* KosmosJavaScriptCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosJavaScriptCore.swift; sourceTree = "<group>"; };
-		01873012214F3C16000F7838 /* KosmosUIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosUIKit.swift; sourceTree = "<group>"; };
-		01873013214F3C16000F7838 /* KosmosCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosCoreLocation.swift; sourceTree = "<group>"; };
-		01873014214F3C16000F7838 /* KosmosSpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosSpriteKit.swift; sourceTree = "<group>"; };
-		01873015214F3C16000F7838 /* KosmosFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KosmosFoundation.swift; sourceTree = "<group>"; };
-		0187301C214F3C16000F7838 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		01873022214F3C16000F7838 /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
-		01873040214F3C16000F7838 /* NSLayoutConstraintHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHelper.swift; sourceTree = "<group>"; };
 		018EF0002015C3F100CB6F35 /* SLGloabls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLGloabls.swift; sourceTree = "<group>"; };
 		018EF0022015C64200CB6F35 /* SKLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKLaunch.swift; sourceTree = "<group>"; };
 		018EF0032015C64200CB6F35 /* SKLaunch.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SKLaunch.sks; sourceTree = "<group>"; };
@@ -172,9 +212,6 @@
 		0193992E202060C900BA4A8D /* ObjectiveC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveC-Bridging-Header.h"; sourceTree = "<group>"; };
 		019861812181582700724C68 /* SKParameters.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SKParameters.sks; sourceTree = "<group>"; };
 		019861832181583900724C68 /* SKParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKParameters.swift; sourceTree = "<group>"; };
-		019861862181708B00724C68 /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
-		019861882181869300724C68 /* SKSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSlider.swift; sourceTree = "<group>"; };
-		0198618A21818C3A00724C68 /* SKControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKControl.swift; sourceTree = "<group>"; };
 		019A295720CF58E300B87F9C /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAnimatedImageRep.h; sourceTree = "<group>"; };
 		019A295820CF58E300B87F9C /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		019A295920CF58E300B87F9C /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
@@ -237,7 +274,6 @@
 		019A29B020CF5B9100B87F9C /* SKSpriteNode+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+WebCache.h"; sourceTree = "<group>"; };
 		019A29B120CF5B9100B87F9C /* SKSpriteNode+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+WebCache.m"; sourceTree = "<group>"; };
 		01A7CBE821916F610001F1F5 /* number.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = number.atlas; sourceTree = "<group>"; };
-		01A7CC1221918B040001F1F5 /* SKNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNumber.swift; sourceTree = "<group>"; };
 		01AC9F58217083BB00A0B1E2 /* SKBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBottomBar.swift; sourceTree = "<group>"; };
 		01AC9F5A217084E700A0B1E2 /* SKNavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNavigationTitle.swift; sourceTree = "<group>"; };
 		01B628931FB3F74900E1AF28 /* combo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = combo.atlas; sourceTree = "<group>"; };
@@ -306,6 +342,73 @@
 			path = Particle;
 			sourceTree = "<group>";
 		};
+		0172740A2223C0960028AF84 /* Kosmos */ = {
+			isa = PBXGroup;
+			children = (
+				0172740B2223C0960028AF84 /* KosmosCoreGraphics.swift */,
+				0172741B2223C0960028AF84 /* KosmosJavaScriptCore.swift */,
+				0172741C2223C0960028AF84 /* Kosmos.bundle */,
+				0172741D2223C0960028AF84 /* KosmosUIKit.swift */,
+				0172741E2223C0960028AF84 /* KosmosCoreLocation.swift */,
+				0172741F2223C0960028AF84 /* KosmosSpriteKit.swift */,
+				017274202223C0960028AF84 /* KosmosFoundation.swift */,
+				017274212223C0960028AF84 /* Utility */,
+			);
+			name = Kosmos;
+			path = ../../../../Kosmos;
+			sourceTree = "<group>";
+		};
+		017274212223C0960028AF84 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				017274222223C0960028AF84 /* SpriteKitExtension */,
+				0172742A2223C0960028AF84 /* Data+CommonCrypto.swift */,
+				0172742B2223C0960028AF84 /* SwiftyJSON.swift */,
+				0172742C2223C0960028AF84 /* UIVerificationController.swift */,
+				0172742D2223C0960028AF84 /* SQLite.swift */,
+				0172742E2223C0960028AF84 /* QRCodeMask.swift */,
+				0172742F2223C0960028AF84 /* DateComponents+Lunar.swift */,
+				017274302223C0960028AF84 /* IIContact.swift */,
+				017274312223C0960028AF84 /* UIImageShowerController.swift */,
+				017274322223C0960028AF84 /* AutoTest */,
+				017274372223C0960028AF84 /* UIProgressCircle.swift */,
+				017274382223C0960028AF84 /* IIImagePickerController.swift */,
+				017274392223C0960028AF84 /* NSLayoutConstraintHelper.swift */,
+				0172743A2223C0960028AF84 /* KeyChain.swift */,
+				0172743B2223C0960028AF84 /* UICalendar.swift */,
+				0172743C2223C0960028AF84 /* DateComponents+Solar.swift */,
+				0172743D2223C0960028AF84 /* QRCode.swift */,
+				0172743E2223C0970028AF84 /* UILaunchController.swift */,
+				0172743F2223C0970028AF84 /* UIFlowLayoutView.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		017274222223C0960028AF84 /* SpriteKitExtension */ = {
+			isa = PBXGroup;
+			children = (
+				017274232223C0960028AF84 /* SKSlider.swift */,
+				017274242223C0960028AF84 /* SKGridView.swift */,
+				017274252223C0960028AF84 /* SKBackgroundMusicPlayer.swift */,
+				017274262223C0960028AF84 /* SKButton.swift */,
+				017274272223C0960028AF84 /* SKSoundEffect.swift */,
+				017274282223C0960028AF84 /* SKNumber.swift */,
+				017274292223C0960028AF84 /* SKControl.swift */,
+			);
+			path = SpriteKitExtension;
+			sourceTree = "<group>";
+		};
+		017274322223C0960028AF84 /* AutoTest */ = {
+			isa = PBXGroup;
+			children = (
+				017274332223C0960028AF84 /* UIView+UIAutoTest.h */,
+				017274342223C0960028AF84 /* UIResponder+UIAutoTest.h */,
+				017274352223C0960028AF84 /* UIView+UIAutoTest.m */,
+				017274362223C0960028AF84 /* UIResponder+UIAutoTest.m */,
+			);
+			path = AutoTest;
+			sourceTree = "<group>";
+		};
 		01851FB42019C1C400CAEC43 /* 04 模拟组队 */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,38 +416,6 @@
 				01E277E42019A0C900B29296 /* SKShowTeam.swift */,
 			);
 			name = "04 模拟组队";
-			sourceTree = "<group>";
-		};
-		0187300D214F3C16000F7838 /* Kosmos */ = {
-			isa = PBXGroup;
-			children = (
-				0187300E214F3C16000F7838 /* KosmosCoreGraphics.swift */,
-				0187300F214F3C16000F7838 /* KosmosJavaScriptCore.swift */,
-				01873012214F3C16000F7838 /* KosmosUIKit.swift */,
-				01873013214F3C16000F7838 /* KosmosCoreLocation.swift */,
-				01873014214F3C16000F7838 /* KosmosSpriteKit.swift */,
-				01873015214F3C16000F7838 /* KosmosFoundation.swift */,
-				01873016214F3C16000F7838 /* Utility */,
-			);
-			name = Kosmos;
-			path = ../../../../Kosmos;
-			sourceTree = "<group>";
-		};
-		01873016214F3C16000F7838 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				01873040214F3C16000F7838 /* NSLayoutConstraintHelper.swift */,
-				0107EC15214BA43500AF8F7F /* SKBackgroundMusicPlayer.swift */,
-				019861862181708B00724C68 /* SKButton.swift */,
-				0198618A21818C3A00724C68 /* SKControl.swift */,
-				0174318D2174348B002D03CA /* SKGridView.swift */,
-				01A7CC1221918B040001F1F5 /* SKNumber.swift */,
-				019861882181869300724C68 /* SKSlider.swift */,
-				0107EC17214BA4C600AF8F7F /* SKSoundEffect.swift */,
-				01873022214F3C16000F7838 /* SQLite.swift */,
-				0187301C214F3C16000F7838 /* SwiftyJSON.swift */,
-			);
-			path = Utility;
 			sourceTree = "<group>";
 		};
 		018EF0132015CBC000CB6F35 /* 00 登录界面 */ = {
@@ -402,7 +473,7 @@
 		0193A571202C4E5F00933E8C /* code-d */ = {
 			isa = PBXGroup;
 			children = (
-				0187300D214F3C16000F7838 /* Kosmos */,
+				0172740A2223C0960028AF84 /* Kosmos */,
 				019A295620CF58E300B87F9C /* SDWebImage */,
 			);
 			path = "code-d";
@@ -624,7 +695,7 @@
 				TargetAttributes = {
 					01F05D7B1FAAA0F400A5AF0E = {
 						CreatedOnToolsVersion = 9.0.1;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -660,6 +731,7 @@
 				01F05DA21FAAC4C700A5AF0E /* SKPlayStone.sks in Resources */,
 				0139F9A8218D40840081736A /* shoot.sks in Resources */,
 				01437F1E21758CB9007FF02B /* SKBottomBar.sks in Resources */,
+				017274482223C0970028AF84 /* Kosmos.bundle in Resources */,
 				01E277E72019A0C900B29296 /* SKShowTeam.sks in Resources */,
 				0104CC522022A34D008E9CA7 /* stone.atlas in Resources */,
 				01A7CBE921916F620001F1F5 /* number.atlas in Resources */,
@@ -689,92 +761,108 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017274632223C0970028AF84 /* DateComponents+Solar.swift in Sources */,
 				01AC9F59217083BB00A0B1E2 /* SKBottomBar.swift in Sources */,
 				019A299B20CF58E300B87F9C /* UIImage+GIF.m in Sources */,
 				019A299620CF58E300B87F9C /* UIImageView+HighlightedWebCache.m in Sources */,
+				017274582223C0970028AF84 /* QRCodeMask.swift in Sources */,
 				019A29AC20CF58E300B87F9C /* UIView+WebCache.m in Sources */,
+				0172745C2223C0970028AF84 /* UIView+UIAutoTest.m in Sources */,
+				0172745B2223C0970028AF84 /* UIImageShowerController.swift in Sources */,
 				012436A7202AD7BA00CBA9A6 /* SKStageListCell.swift in Sources */,
 				01F7E38A2150D80F007D840F /* SLTextures.swift in Sources */,
 				019861842181583900724C68 /* SKParameters.swift in Sources */,
+				017274622223C0970028AF84 /* UICalendar.swift in Sources */,
 				019A299420CF58E300B87F9C /* MKAnnotationView+WebCache.m in Sources */,
+				017274492223C0970028AF84 /* KosmosUIKit.swift in Sources */,
 				019A299D20CF58E300B87F9C /* SDWebImageCoderHelper.m in Sources */,
+				017274592223C0970028AF84 /* DateComponents+Lunar.swift in Sources */,
 				01B7488A217DA06400A29694 /* SLCombineSkill.swift in Sources */,
+				017274472223C0970028AF84 /* KosmosJavaScriptCore.swift in Sources */,
 				01F05DA31FAAC4C700A5AF0E /* SLAppDelegate.swift in Sources */,
 				018EF0182015CC1200CB6F35 /* SKWorld.swift in Sources */,
 				01AC9F5B217084E700A0B1E2 /* SKNavigationTitle.swift in Sources */,
+				017274652223C0970028AF84 /* UILaunchController.swift in Sources */,
 				012436A6202AD7BA00CBA9A6 /* SKStageList.swift in Sources */,
 				019398F22020146200BA4A8D /* SLElementType.swift in Sources */,
 				01853615218C196000E1AC4E /* SLSkillEffect.swift in Sources */,
 				019A29A520CF58E300B87F9C /* SDWebImageTransition.m in Sources */,
-				0174318E2174348B002D03CA /* SKGridView.swift in Sources */,
-				019861892181869300724C68 /* SKSlider.swift in Sources */,
 				019A29A120CF58E300B87F9C /* NSButton+WebCache.m in Sources */,
-				01A7CC1321918B040001F1F5 /* SKNumber.swift in Sources */,
+				017274662223C0970028AF84 /* UIFlowLayoutView.swift in Sources */,
 				019A299720CF58E300B87F9C /* SDWebImageFrame.m in Sources */,
+				0172744C2223C0970028AF84 /* KosmosFoundation.swift in Sources */,
+				0172745F2223C0970028AF84 /* IIImagePickerController.swift in Sources */,
 				018EF0622015D8AA00CB6F35 /* SKMonster.swift in Sources */,
 				019A29A020CF58E300B87F9C /* SDWebImageCoder.m in Sources */,
-				0107EC18214BA4C600AF8F7F /* SKSoundEffect.swift in Sources */,
 				01E277E62019A0C900B29296 /* SKShowTeam.swift in Sources */,
 				019A29B220CF5B9100B87F9C /* SKSpriteNode+WebCache.m in Sources */,
-				0187304F214F3C16000F7838 /* KosmosJavaScriptCore.swift in Sources */,
 				019A29A820CF58E300B87F9C /* NSImage+WebCache.m in Sources */,
-				0187306C214F3C16000F7838 /* NSLayoutConstraintHelper.swift in Sources */,
+				0172744B2223C0970028AF84 /* KosmosSpriteKit.swift in Sources */,
 				019A29A420CF58E300B87F9C /* SDWebImageDownloaderOperation.m in Sources */,
 				019A29A620CF58E300B87F9C /* NSData+ImageContentType.m in Sources */,
 				01B74886217D9C4B00A29694 /* SLActiveSkill.swift in Sources */,
 				019A29A920CF58E300B87F9C /* SDWebImageGIFCoder.m in Sources */,
 				019A299A20CF58E300B87F9C /* SDWebImageDownloader.m in Sources */,
+				017274562223C0970028AF84 /* UIVerificationController.swift in Sources */,
 				01284A2C217EF39300F7F7EF /* ImagePickerController.swift in Sources */,
+				017274512223C0970028AF84 /* SKSoundEffect.swift in Sources */,
 				019A299520CF58E300B87F9C /* SDWebImageManager.m in Sources */,
+				0172745A2223C0970028AF84 /* IIContact.swift in Sources */,
 				019A29AE20CF58E300B87F9C /* UIButton+WebCache.m in Sources */,
 				01FCC0B62188049E00C23576 /* SKSceneBorder.swift in Sources */,
 				01F05A012182ACCF00DDEF81 /* SKSealCard.swift in Sources */,
-				019861872181708B00724C68 /* SKButton.swift in Sources */,
 				019A299E20CF58E300B87F9C /* SDWebImageCompat.m in Sources */,
-				0187304E214F3C16000F7838 /* KosmosCoreGraphics.swift in Sources */,
 				019A29AD20CF58E300B87F9C /* SDWebImageImageIOCoder.m in Sources */,
 				018EF0012015C3F100CB6F35 /* SLGloabls.swift in Sources */,
+				017274642223C0970028AF84 /* QRCode.swift in Sources */,
+				017274602223C0970028AF84 /* NSLayoutConstraintHelper.swift in Sources */,
 				019A299320CF58E300B87F9C /* UIImage+WebP.m in Sources */,
-				01873054214F3C16000F7838 /* KosmosFoundation.swift in Sources */,
+				017274502223C0970028AF84 /* SKButton.swift in Sources */,
 				019A299820CF58E300B87F9C /* UIImage+ForceDecode.m in Sources */,
+				017274522223C0970028AF84 /* SKNumber.swift in Sources */,
 				012436A1202AAC7500CBA9A6 /* SKStoryListCell.swift in Sources */,
 				019A29A220CF58E300B87F9C /* SDAnimatedImageRep.m in Sources */,
 				01B74888217D9E6100A29694 /* SLAmeliorationSkill.swift in Sources */,
+				017274542223C0970028AF84 /* Data+CommonCrypto.swift in Sources */,
 				019A29AF20CF58E300B87F9C /* SDWebImageWebPCoder.m in Sources */,
 				01B74880217D967D00A29694 /* SKSkillNode.swift in Sources */,
-				0187305B214F3C16000F7838 /* SQLite.swift in Sources */,
 				019A299920CF58E300B87F9C /* SDWebImageCodersManager.m in Sources */,
 				01F05DA61FAAC4C700A5AF0E /* SKPlayStone.swift in Sources */,
 				015DD5CD2023F2EA0064A37C /* SLTeamSkill.swift in Sources */,
 				016F0ABC2176D99300151668 /* SKPackageRemoveCell.swift in Sources */,
+				0172744E2223C0970028AF84 /* SKGridView.swift in Sources */,
 				0174319021745AB8002D03CA /* SKPackageMonsterCell.swift in Sources */,
 				019A29AB20CF58E300B87F9C /* UIView+WebCacheOperation.m in Sources */,
 				01F7E38C2150D823007D840F /* SLAnimations.swift in Sources */,
-				01873053214F3C16000F7838 /* KosmosSpriteKit.swift in Sources */,
 				019A29AA20CF58E300B87F9C /* SDImageCacheConfig.m in Sources */,
 				01259F112195309B00A02ECC /* SKEnemyNode.swift in Sources */,
+				017274402223C0970028AF84 /* KosmosCoreGraphics.swift in Sources */,
 				01CF185E20293EB1003EA2DD /* SKStatusBar.swift in Sources */,
 				0109BB1721539832001E8283 /* SLRacialType.swift in Sources */,
+				0172744F2223C0970028AF84 /* SKBackgroundMusicPlayer.swift in Sources */,
+				017274612223C0970028AF84 /* KeyChain.swift in Sources */,
 				01F05DA71FAAC4C700A5AF0E /* SKSelectMemeber.swift in Sources */,
-				01873052214F3C16000F7838 /* KosmosCoreLocation.swift in Sources */,
-				01873051214F3C16000F7838 /* KosmosUIKit.swift in Sources */,
+				0172744A2223C0970028AF84 /* KosmosCoreLocation.swift in Sources */,
 				018EF01C2015D0AE00CB6F35 /* SKPackage.swift in Sources */,
+				017274532223C0970028AF84 /* SKControl.swift in Sources */,
 				01437F2221758E0E007FF02B /* SKFilterMonster.swift in Sources */,
 				019A29A720CF58E300B87F9C /* UIImageView+WebCache.m in Sources */,
 				01F05DB41FAB031C00A5AF0E /* SKRunestone.swift in Sources */,
 				019A299F20CF58E300B87F9C /* SDWebImagePrefetcher.m in Sources */,
+				0172745E2223C0970028AF84 /* UIProgressCircle.swift in Sources */,
 				0124369D202A9CD400CBA9A6 /* SKStoryList.swift in Sources */,
+				017274572223C0970028AF84 /* SQLite.swift in Sources */,
 				019A299C20CF58E300B87F9C /* UIImage+MultiFormat.m in Sources */,
 				01F05DA51FAAC4C700A5AF0E /* SKEditStone.swift in Sources */,
 				01BD46F0201EFCCE00A8E71B /* SLMonster.swift in Sources */,
-				0198618B21818C3B00724C68 /* SKControl.swift in Sources */,
 				01FCC0B8218833D700C23576 /* SKMonsterCard.swift in Sources */,
 				015DD5CB2023F0DF0064A37C /* SLTeam.swift in Sources */,
 				019A29A320CF58E300B87F9C /* SDImageCache.m in Sources */,
+				0172744D2223C0970028AF84 /* SKSlider.swift in Sources */,
 				018EF0042015C64200CB6F35 /* SKLaunch.swift in Sources */,
-				01873057214F3C16000F7838 /* SwiftyJSON.swift in Sources */,
+				017274552223C0970028AF84 /* SwiftyJSON.swift in Sources */,
+				0172745D2223C0970028AF84 /* UIResponder+UIAutoTest.m in Sources */,
 				01B74884217D9A8400A29694 /* SLLeaderSkill.swift in Sources */,
-				0107EC16214BA43500AF8F7F /* SKBackgroundMusicPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,7 +988,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WJ6Q6P2F3X;
+				DEVELOPMENT_TEAM = HPX3TBM4P8;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aceasy.towerofsaviers.helper;
@@ -908,7 +996,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/ObjectiveC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -921,14 +1009,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WJ6Q6P2F3X;
+				DEVELOPMENT_TEAM = HPX3TBM4P8;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aceasy.towerofsaviers.helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/ObjectiveC-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

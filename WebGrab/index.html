@@ -173,7 +173,7 @@
                         }
                     },
                     summary: {
-                        parser: '<th style>[^<]+</th><td colspan="5" style><b>([^<]+)</b></td><th style>[^<]+</th><td colspan="3" style><b>([^<]+)</b></td></tr><tr><th style><div smid_id data-id="[^"]+">[^<]+</div></th><td style>([^<]+)</td><th style>[^<]+</th><td style>([^<]+)★</td><th style>[^<]+</th><td style>([^<]+)</td><th style>[^<]+</th><td style><a href="[^"]+" title="[^"]+">([^<]+)</a></td><th style>[^<]+</th><td style><a[^>]+>([^<]+)</a></td></tr><tr><th style>[^<]+<br>Lv</th><td>([^<]+)</td><th><a href="[^"]+" title="[^"]+"><span style title="[^"]+">[^<]+<br>[^<]+</span></a></th><td colspan="3">([^<]+)</td><th>[^<]+<br>[^<]+</th><td colspan="3">([^<]+)</td></tr>',
+                        parser: '<th style>[^<]+</th><td colspan="5" style><b>([^<]+)</b></td><th style>[^<]+</th><td colspan="3" style><b>([^<]+)</b></td></tr><tr><th style><div smid_id data-id="[^"]+">[^<]+</div></th><td style>([^<]+)</td><th style>[^<]+</th><td style>([^<]+)★</td><th style>[^<]+</th><td style>([^<]*)</td><th style>[^<]+</th><td style><a href="[^"]+" title="[^"]+">([^<]+)</a></td><th style>[^<]+</th><td style><a[^>]+>([^<]+)</a></td></tr><tr><th style>[^<]+<br>Lv</th><td>([^<]+)</td><th><a href="[^"]+" title="[^"]+"><span style title="[^"]+">[^<]+<br>[^<]+</span></a></th><td colspan="3">([^<]+)</td><th>[^<]+<br>[^<]+</th><td colspan="3">([^<]+)</td></tr>',
                         handle: function(item, search) {
                             monster.怪兽名称 = search[1];
                             monster.元素属性 = search[2];
@@ -419,7 +419,7 @@
         function GrabIndex() {
 
             var response = webgrab({
-                url: 'http://zh.tos.wikia.com/wiki/召唤兽搜寻器',
+                url: 'https://tos.fandom.com/zh/wiki/召喚獸搜尋器',
                 mimeType: 'text/html;charset=UTF-8',
                 monsters: {
                     parser: '<div data-attack="([^"]+)" data-attribute="([^"]+)" data-hp="([^"]+)" data-monsterid="([^"]+)" data-racialtype="([^"]+)" data-recover="([^"]+)" data-seriesid="([^"]+)" data-size="([^"]+)" data-star="([^"]+)"><div style><a href="([^"]+)" image image-thumbnail link-internal title="([^"]+)"><img[^>]+src="([^"]+)"',
@@ -428,12 +428,17 @@
                         item.怪兽种族 = search[5];
                         item.所属系列 = search[7];
                         item.怪兽星级 = search[9];
-                        item.链接地址 = search[10];
+                        item.链接地址 = 'https://tos.fandom.com' + search[10];
                         item.怪兽名称 = search[11];
-                        item.怪兽头像 = search[12].replace(/\/scale-to-width-down\/\d+?cb=\d+&/, '/scale-to-width-down/100?');
+                        item.怪兽头像 = search[12].replace(/\/scale-to-width-down\/\d+\?cb=\d+&/, '/scale-to-width-down/100?');
                     }
                 }
             });
+
+            if (response.status != 200) {
+                alert(response.status);
+                return;
+            }
 
             tosdb.transaction(function(context) {
                 for (const monster of response.monsters.results) {
@@ -485,10 +490,10 @@
             window.tosdb = tosdb;
 
             tosdb.transaction(function(context) {
-                context.executeSql('CREATE TABLE IF NOT EXISTS 团队技能 (怪兽标识 INTEGER, 技能描述 TEXT, 限制条件 TEXT, PRIMARY KEY(怪兽标识, 技能描述, 限制条件))', []);
+                context.executeSql('CREATE TABLE IF NOT EXISTS 团队技能 (怪兽标识 INTEGER, 技能描述 TEXT, 限制条件 TEXT, PRIMARY KEY(怪兽标识, 技能描述, 限制条件))');
                 context.executeSql('CREATE TABLE IF NOT EXISTS 组合技能 (怪兽标识 INTEGER, 技能名称 TEXT, 技能描述 TEXT, 限制条件 TEXT, PRIMARY KEY(怪兽标识, 技能名称, 技能描述, 限制条件))');
-                context.executeSql('CREATE TABLE IF NOT EXISTS 升华技能 (怪兽标识 INTEGER, 排列序号 INTEGER, 消耗灵魂 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 排列序号, 消耗灵魂, 技能描述))', []);
-                context.executeSql('CREATE TABLE IF NOT EXISTS 主动技能 (怪兽标识 INTEGER, 技能名称 TEXT, 技能类型 TEXT, 最大消耗 INTEGER, 最小消耗 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 技能名称, 技能类型, 技能描述))', []);
+                context.executeSql('CREATE TABLE IF NOT EXISTS 升华技能 (怪兽标识 INTEGER, 排列序号 INTEGER, 消耗灵魂 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 排列序号, 消耗灵魂, 技能描述))');
+                context.executeSql('CREATE TABLE IF NOT EXISTS 主动技能 (怪兽标识 INTEGER, 技能名称 TEXT, 技能类型 TEXT, 最大消耗 INTEGER, 最小消耗 INTEGER, 技能描述 TEXT, PRIMARY KEY(怪兽标识, 技能名称, 技能类型, 技能描述))');
                 context.executeSql('CREATE TABLE IF NOT EXISTS 怪兽数据 (怪兽标识 INTEGER, 怪兽名称 TEXT, 链接地址 TEXT, 怪兽立绘 TEXT, 怪兽头像 TEXT, 元素属性 TEXT, 怪兽星级 INTEGER, 占据空间 INTEGER, 怪兽种族 TEXT, 所属系列 TEXT, 最大等级 INTEGER, 升级曲线 INTEGER, 满级经验 INTEGER, 初始生命 INTEGER, 初始攻击 INTEGER, 初始恢复 INTEGER, 初始三围 INTEGER, 初始经验 INTEGER, 初始金币 INTEGER, 满级生命 INTEGER, 满级攻击 INTEGER, 满级恢复 INTEGER, 满级三围 INTEGER, 每级经验 INTEGER, 每级金币 INTEGER, 队长技能 TEXT, 技能描述 TEXT, 相关故事 TEXT, PRIMARY KEY(链接地址))');
             });
         }
